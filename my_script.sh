@@ -13,7 +13,7 @@ for unit in $units; do
 	echo "Обработка юнита: $unit"
 	service_name=${unit#foobar-}
 
-	if ! systemctl stop "$unit"; then
+	if [! systemctl stop "$unit"]; then
         	echo "Ошибка при остановке $unit"
         	exit 2
 	fi
@@ -27,12 +27,12 @@ for unit in $units; do
         	exit 3
 	fi
 
-	if ! mkdir -p "$new_dir"; then
+	if [! mkdir -p "$new_dir"]; then
 		echo "Ошибка при создании директории"
 		exit 4
 	fi
 
-	if ! mv "$old_dir"/* "$new_dir"/; then
+	if [! mv "$old_dir"/* "$new_dir"/]; then
         	echo "Ошибка переноса файлов из $old_dir в $new_dir"
         	exit 5
     	fi
